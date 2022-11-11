@@ -23,6 +23,8 @@ namespace UserMaintenanceFour
             lblLastName.Text = Resources1.LastName;
             btnAdd.Text = Resource2.Add;
 
+            //köviverzió
+
             listBox1.DataSource = users;
             listBox1.ValueMember = "ID";
             listBox1.DisplayMember = "FullName";
