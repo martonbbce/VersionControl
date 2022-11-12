@@ -1,7 +1,12 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\nz43vh_gyak03_01",
+    "\\nz43vh_gyak03_01\\nz43vh_gyak03_01",
+    "\\nz43vh_gyak03_01\\nz43vh_gyak03_01\\bin",
+    "\\nz43vh_gyak03_01\\nz43vh_gyak03_01\\bin\\Debug",
+    "\\nz43vh_gyak03_01\\nz43vh_gyak03_01\\obj"
   ],
-  "SelectedNode": "\\C:\\Users\\nz43vh\\Source\\Repos\\VersionControl2",
+  "SelectedNode": "\\nz43vh_gyak03_01\\nz43vh_gyak03_01\\Form1.cs",
   "PreviewInSolutionExplorer": true
 }

@@ -9,6 +9,7 @@ namespace nz43vh_gyak03_01
     class Ramen
     {
         public int ID { get; set; }
+
         public string Brand {get;set;}
 
         public string Name { get; set; }
@@ -17,7 +18,7 @@ namespace nz43vh_gyak03_01
 
         public Country Country { get; set; }
 
-        public double Stars { get; set; }
+        public double Rating { get; set; }
 
     }
 }
