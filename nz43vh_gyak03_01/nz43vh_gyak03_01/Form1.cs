@@ -53,19 +53,22 @@ namespace nz43vh_gyak03_01
             var search = (from x in countries
                               where x.Name.Equals(inputcountry)
                               select x).FirstOrDefault();
-                if (search == null)
-                {
-                    Country newcountry = new Country();
-                    newcountry.ID = countries.Count;
-                    newcountry.Name = inputcountry;
-                    Console.WriteLine(newcountry.Name);
-                    countries.Add(newcountry);
-                    return newcountry;
-                }
-            else
+            if (search == null)
             {
-                return search;
+                search = new Country
+                {
+                    ID = countries.Count,
+                    Name = inputcountry
+                    // Console.WriteLine(search.Name)
+
+                };
+                countries.Add(search);
+
+
             }
+            
+                return search;
+            
         }
 
         private void GetCountries()
