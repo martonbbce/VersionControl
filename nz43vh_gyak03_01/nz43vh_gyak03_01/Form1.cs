@@ -22,7 +22,9 @@ namespace nz43vh_gyak03_01
             
             InitializeComponent();
             LoadData("ramen.csv");
-            listBox1.DisplayMember = "Name";
+            
+            GetCountries();
+            
         }
 
         private void LoadData(string filename)
@@ -56,6 +58,7 @@ namespace nz43vh_gyak03_01
                     Country newcountry = new Country();
                     newcountry.ID = countries.Count;
                     newcountry.Name = inputcountry;
+                    Console.WriteLine(newcountry.Name);
                     countries.Add(newcountry);
                     return newcountry;
                 }
@@ -65,20 +68,40 @@ namespace nz43vh_gyak03_01
             }
         }
 
-        void GetCountries()
+        private void GetCountries()
         {
-            var searchcountr = (from x in countries
-                                where x.Name.Contains(textBox1.Text)
-                                orderby x.Name
-                                select x
-                                );
+            var searchcountr = from x in countries
+                               where x.Name.Contains(textBox1.Text)
+                               orderby x.Name
+                               select x;
+                                
             listBox1.DataSource = searchcountr.ToList();
+            listBox1.DisplayMember = "Name";
             
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
             GetCountries();
+        }
+
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Console.WriteLine("Selected index changed");
+            if(listBox1.SelectedItem == null) { return; } 
+            Country selectedcountry = (Country)listBox1.SelectedItem;
+            var contrRamens = from x in ramens where x.CountryFK == selectedcountry.ID select x;
+            var orderedContrRamens = from x in contrRamens
+                                     group x.Rating by x.Brand into f
+                                     select new
+                                     {
+                                         BrandName = f.Key,
+                                         Averagerating = Math.Round(f.Average(), 2)
+                                     };
+            var ered3 = from h in orderedContrRamens 
+                        orderby h.Averagerating descending 
+                        select h;
+            dataGridView1.DataSource = ered3.ToList();
         }
     }
 }
