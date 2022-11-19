@@ -95,27 +95,11 @@ namespace RealEstateProject
                 GetCell(2, 1), 
                 GetCell(1+values.GetLength(0),values.GetLength(1))
                 ).Value2=values;
-            string[] kepletesoszlop = new string[Flats.Count];
-            index = 0;
-            string arcella;
-            string teruletcella;
-            foreach (string item in kepletesoszlop)
-            {
-                arcella = GetCell(index + 1, 8);
-                teruletcella = GetCell(index + 1, 7);
-                kepletesoszlop[index] = "=1000000*"+arcella+"/" + teruletcella;
-                
-                //kepletesoszlop[index] = String.Format("={1}/{2}", GetCell(index+1, 8), GetCell(index+1,7));
-                Console.WriteLine(kepletesoszlop[index]);
-                index++;
-            }
-            //while (index < kepletesoszlop.Length)
-            //{
-            //    kepletesoszlop[index] = String.Format("={1}/{2}", GetCell(index + 1, 8), GetCell(index + 1, 7));
-            //    Console.WriteLine(kepletesoszlop[index]);
-            //    index++;
-            //}
-            xlSheet.get_Range(GetCell(2,9),GetCell(kepletesoszlop.Length+1,9)).Value = kepletesoszlop;
+            Excel.Range rangee;
+
+            rangee = xlSheet.get_Range(GetCell(2, 9), GetCell(Flats.Count, 9));
+            rangee.Value = "=1000000*" + GetCell(2, 8) + "/" + GetCell(2, 7);
+            
 
         }
 
