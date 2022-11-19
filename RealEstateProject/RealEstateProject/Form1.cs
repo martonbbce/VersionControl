@@ -21,7 +21,7 @@ namespace RealEstateProject
         Excel.Worksheet xlSheet;
         public Form1()
         {
-            InitializeComponent();
+            //InitializeComponent();
             LoadData();
             CreateExcel();
             //MessageBox.Show(GetCell(2, 2), "2, 2 eredménye");
@@ -99,8 +99,25 @@ namespace RealEstateProject
 
             rangee = xlSheet.get_Range(GetCell(2, 9), GetCell(Flats.Count, 9));
             rangee.Value = "=1000000*" + GetCell(2, 8) + "/" + GetCell(2, 7);
-            
 
+            Excel.Range headerRange = xlSheet.get_Range(GetCell(1, 1), GetCell(1, headers.Length));
+            headerRange.Font.Bold = true;
+            headerRange.VerticalAlignment = Excel.XlVAlign.xlVAlignCenter;
+            headerRange.HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
+            headerRange.EntireColumn.AutoFit();
+            headerRange.RowHeight = 40;
+            headerRange.Interior.Color = Color.LightBlue;
+            headerRange.BorderAround2(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThick);
+
+            rangee = xlSheet.UsedRange;
+            rangee.BorderAround2(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThick);
+            rangee = xlSheet.get_Range(GetCell(1, 1), GetCell(Flats.Count + 1,1));
+            rangee.Font.Bold = true;
+            rangee.Interior.Color = Color.LightYellow;
+            rangee = xlSheet.get_Range(GetCell(1, 9), GetCell( Flats.Count + 1,9));
+            rangee.Interior.Color = Color.LightGreen;
+            rangee.NumberFormat = "0.00";
+            
         }
 
         private string GetCell(int x, int y)
