@@ -1,0 +1,9 @@
+C:\Users\nz43vh\source\repos\VersionControl\WebServiceGyak05\WebServiceGyak05\bin\Debug\WebServiceGyak05.exe.config
+C:\Users\nz43vh\source\repos\VersionControl\WebServiceGyak05\WebServiceGyak05\bin\Debug\WebServiceGyak05.exe
+C:\Users\nz43vh\source\repos\VersionControl\WebServiceGyak05\WebServiceGyak05\bin\Debug\WebServiceGyak05.pdb
+C:\Users\nz43vh\source\repos\VersionControl\WebServiceGyak05\WebServiceGyak05\obj\Debug\WebServiceGyak05.csproj.AssemblyReference.cache
+C:\Users\nz43vh\source\repos\VersionControl\WebServiceGyak05\WebServiceGyak05\obj\Debug\WebServiceGyak05.Properties.Resources.resources
+C:\Users\nz43vh\source\repos\VersionControl\WebServiceGyak05\WebServiceGyak05\obj\Debug\WebServiceGyak05.csproj.GenerateResource.cache
+C:\Users\nz43vh\source\repos\VersionControl\WebServiceGyak05\WebServiceGyak05\obj\Debug\WebServiceGyak05.csproj.CoreCompileInputs.cache
+C:\Users\nz43vh\source\repos\VersionControl\WebServiceGyak05\WebServiceGyak05\obj\Debug\WebServiceGyak05.exe
+C:\Users\nz43vh\source\repos\VersionControl\WebServiceGyak05\WebServiceGyak05\obj\Debug\WebServiceGyak05.pdb
