@@ -8,15 +8,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WebServiceGyak05.Entities;
+
 
 namespace WebServiceGyak05
 {
     public partial class Form1 : Form
     {
+        BindingList<RateData> Rates;
         public Form1()
         {
-            InitializeComponent();
             LoadMnbServices();
+            InitializeComponent();
         }
         void LoadMnbServices()
         {
@@ -30,7 +33,8 @@ namespace WebServiceGyak05
             var response = mnbService.GetExchangeRates(request);
             var result = response.GetExchangeRatesResult;
             File.WriteAllText("kimenet.txt", result);
-            
+            Rates = new BindingList<RateData>();
+            dataGridView1.DataSource = Rates;
         }
     }
 }

@@ -7,3 +7,4 @@ C:\Users\nz43vh\source\repos\VersionControl\WebServiceGyak05\WebServiceGyak05\ob
 C:\Users\nz43vh\source\repos\VersionControl\WebServiceGyak05\WebServiceGyak05\obj\Debug\WebServiceGyak05.csproj.CoreCompileInputs.cache
 C:\Users\nz43vh\source\repos\VersionControl\WebServiceGyak05\WebServiceGyak05\obj\Debug\WebServiceGyak05.exe
 C:\Users\nz43vh\source\repos\VersionControl\WebServiceGyak05\WebServiceGyak05\obj\Debug\WebServiceGyak05.pdb
+C:\Users\nz43vh\source\repos\VersionControl\WebServiceGyak05\WebServiceGyak05\obj\Debug\WebServiceGyak05.Form1.resources
