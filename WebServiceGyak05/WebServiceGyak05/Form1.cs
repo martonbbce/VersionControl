@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml;
 using WebServiceGyak05.Entities;
+using System.Windows.Forms.DataVisualization.Charting;
 
 
 namespace WebServiceGyak05
@@ -24,7 +25,7 @@ namespace WebServiceGyak05
             dataGridView1.DataSource = Rates;
             
             DoXml();
-            
+            DiagramAbrazolas();
         }
         private static string LoadMnbServices()
         {
@@ -56,7 +57,19 @@ namespace WebServiceGyak05
                 var valuee = decimal.Parse(childElement.InnerText);
                 if (unitt != 0)
                     rd.Value = valuee / unitt;
+                else
+                    rd.Value = valuee;
             }
+        }
+        void DiagramAbrazolas()
+        {
+            chartRateData.DataSource = Rates;
+            chartRateData.Series[0].ChartType = SeriesChartType.Line;
+            chartRateData.Series[0].XValueMember = "Date";
+            chartRateData.Series[0].YValueMembers = "Value";
+            chartRateData.ChartAreas[0].AxisX.MajorGrid.Enabled = false;
+            chartRateData.ChartAreas[0].AxisY.MajorGrid.Enabled = false;
+            chartRateData.ChartAreas[0].AxisY.IsStartedFromZero = false;
         }
     }
 }
