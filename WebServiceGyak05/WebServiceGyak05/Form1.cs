@@ -16,5 +16,10 @@ namespace WebServiceGyak05
         {
             InitializeComponent();
         }
+        void LoadMnbServices()
+        {
+            var mnbService = new MnbServiceReference.MNBArfolyamServiceSoapClient();
+
+        }
     }
 }
