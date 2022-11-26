@@ -17,16 +17,41 @@ namespace WebServiceGyak05
 {
     public partial class Form1 : Form
     {
-        BindingList<RateData> Rates;
+        BindingList<RateData> Rates = new BindingList<RateData>();
+        BindingList<string> Currencies = new BindingList<string>();
         public Form1()
         {
             InitializeComponent();
             Rates = new BindingList<RateData>();
             dataGridView1.DataSource = Rates;
-            
-            DoXml();
-            //DiagramAbrazolas();
+            GetOwnCurrencies();
+            DiagramAbrazolas();
             RefreshData();
+            DoXml();
+            
+            
+            
+            
+        }
+
+        private string GetOwnCurrencies()
+        {
+            var mnbService = new MnbServiceReference.MNBArfolyamServiceSoapClient();
+            var request = new MnbServiceReference.GetCurrenciesRequestBody();
+            var response = mnbService.GetCurrencies(request);
+            string result = response.GetCurrenciesResult;
+            XmlDocument xx = new XmlDocument();
+            xx.LoadXml(result);
+            MessageBox.Show(result);
+            XmlElement item = xx.DocumentElement;
+            int i = 0;
+            while (item.ChildNodes[0].ChildNodes[i]!=null)
+            {
+                Currencies.Add(item.ChildNodes[0].ChildNodes[i].InnerText);
+                i++;
+            }
+            mnbService.Close();
+            return result;
         }
         private string LoadMnbServices()
         {
@@ -50,17 +75,21 @@ namespace WebServiceGyak05
             xmldocc.LoadXml(LoadMnbServices());
             foreach (XmlElement el in xmldocc.DocumentElement)
             {
-                RateData rd = new RateData();
-                Rates.Add(rd);
-                rd.Date = DateTime.Parse(el.GetAttribute("date"));
-                var childElement = (XmlElement)el.ChildNodes[0];
-                rd.Currency = childElement.GetAttribute("curr");
-                var unitt = decimal.Parse(childElement.GetAttribute("unit"));
-                var valuee = decimal.Parse(childElement.InnerText);
-                if (unitt != 0)
-                    rd.Value = valuee / unitt;
-                else
-                    rd.Value = valuee;
+                if (el.ChildNodes[0] != null)
+                {
+                    RateData rd = new RateData();
+                    Rates.Add(rd);
+                    rd.Date = DateTime.Parse(el.GetAttribute("date"));
+                    var childElement = (XmlElement)el.ChildNodes[0];
+                    rd.Currency = childElement.GetAttribute("curr");
+                    var unitt = decimal.Parse(childElement.GetAttribute("unit"));
+                    var valuee = decimal.Parse(childElement.InnerText);
+                    if (unitt != 0)
+                        rd.Value = valuee / unitt;
+                    else
+                        rd.Value = valuee;
+                }
+                
             }
         }
         void DiagramAbrazolas()
