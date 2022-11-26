@@ -25,21 +25,23 @@ namespace WebServiceGyak05
             dataGridView1.DataSource = Rates;
             
             DoXml();
-            DiagramAbrazolas();
+            //DiagramAbrazolas();
+            RefreshData();
         }
-        private static string LoadMnbServices()
+        private string LoadMnbServices()
         {
             var mnbService = new MnbServiceReference.MNBArfolyamServiceSoapClient();
             var request = new MnbServiceReference.GetExchangeRatesRequestBody()
             {
-                currencyNames = "EUR",
-                startDate="2022-01-01",
-                endDate="2022-10-31"
+                currencyNames = comboBoxCurrency.SelectedItem.ToString(),
+                startDate = dtPickerStartDate.Value.ToString(),
+                endDate = dtPickerEndDate.Value.ToString()
             };
             var response = mnbService.GetExchangeRates(request);
             var result = response.GetExchangeRatesResult;
             File.WriteAllText("kimenet"+DateTime.Now.ToString("yyMMddHHmm"), result);
             //Rates = new BindingList<RateData>();
+            mnbService.Close();
             return result;
         }
         void DoXml()
@@ -70,6 +72,27 @@ namespace WebServiceGyak05
             chartRateData.ChartAreas[0].AxisX.MajorGrid.Enabled = false;
             chartRateData.ChartAreas[0].AxisY.MajorGrid.Enabled = false;
             chartRateData.ChartAreas[0].AxisY.IsStartedFromZero = false;
+        }
+        void RefreshData()
+        {
+            DiagramAbrazolas();
+            Rates.Clear();
+
+        }
+
+        private void dtPickerStartDate_ValueChanged(object sender, EventArgs e)
+        {
+            RefreshData();
+        }
+
+        private void dtPickerEndDate_ValueChanged(object sender, EventArgs e)
+        {
+            RefreshData();
+        }
+
+        private void comboBoxCurrency_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            RefreshData();
         }
     }
 }
