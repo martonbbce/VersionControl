@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,26 +23,7 @@ namespace VARProject
             Ticklist = context.Tick.ToList();
             dataGridView1.DataSource = Ticklist;
             CreatePortfolio();
-
-            //08feladat
-            List<decimal> Nyereségek = new List<decimal>();
-            int intervalum = 30;
-            DateTime kezdőDátum = (from x in Ticklist select x.TradingDay).Min();
-            DateTime záróDátum = new DateTime(2016, 12, 30);
-            TimeSpan z = záróDátum - kezdőDátum;
-            for (int i = 0; i < z.Days - intervalum; i++)
-            {
-                decimal ny = GetPortfolioValue(kezdőDátum.AddDays(i + intervalum))
-                           - GetPortfolioValue(kezdőDátum.AddDays(i));
-                Nyereségek.Add(ny);
-                Console.WriteLine(i + " " + ny);
-            }
-
-            var nyereségekRendezve = (from x in Nyereségek
-                                      orderby x
-                                      select x)
-                                        .ToList();
-            MessageBox.Show(nyereségekRendezve[nyereségekRendezve.Count() / 5].ToString());
+                        
         }
 
         private void CreatePortfolio()
@@ -66,6 +48,53 @@ namespace VARProject
                 value += (decimal)last.Price * item.Volume;
             }
             return value;
+        }
+
+        private void Nyeresegek()
+        {
+            //08feladat
+            SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+            saveFileDialog1.Filter = "Text Files | *.txt";
+            saveFileDialog1.Title = "Save Profits File";
+            saveFileDialog1.ShowDialog();
+
+            if (saveFileDialog1.FileName != "")
+            {
+                TextWriter tw = new StreamWriter(saveFileDialog1.FileName);
+                tw.WriteLine("Időszak Nyereség");
+
+                List<decimal> Nyereségek = new List<decimal>();
+                int intervalum = 30;
+                DateTime kezdőDátum = (from x in Ticklist select x.TradingDay).Min();
+                DateTime záróDátum = new DateTime(2016, 12, 30);
+                TimeSpan z = záróDátum - kezdőDátum;
+                for (int i = 0; i < z.Days - intervalum; i++)
+                {
+                    decimal ny = GetPortfolioValue(kezdőDátum.AddDays(i + intervalum))
+                               - GetPortfolioValue(kezdőDátum.AddDays(i));
+                    Nyereségek.Add(ny);
+                    Console.WriteLine(i + " " + ny);
+                    tw.WriteLine(i + " " + ny);
+                }
+
+                var nyereségekRendezve = (from x in Nyereségek
+                                          orderby x
+                                          select x)
+                                            .ToList();
+                MessageBox.Show(nyereségekRendezve[nyereségekRendezve.Count() / 5].ToString());
+
+
+                tw.Close();
+            }
+            else MessageBox.Show("Nem adtál meg fájlnevet!");
+
+            
+        }
+
+        private void btnSaveProfit_Click(object sender, EventArgs e)
+        {
+            Nyeresegek();
+            
         }
     }
 }
