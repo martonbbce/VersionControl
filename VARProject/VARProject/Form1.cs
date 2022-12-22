@@ -22,22 +22,8 @@ namespace VARProject
             Ticklist = context.Tick.ToList();
             dataGridView1.DataSource = Ticklist;
             CreatePortfolio();
-
-            // 06
-            int elemszám = Portfolio.Count();
-
-
-            decimal részvényekSzáma = (from x in Portfolio select x.Volume).Sum();
-            MessageBox.Show(string.Format("Részvények száma: {0}", részvényekSzáma));
-
-            DateTime minDátum = (from x in Ticklist select x.TradingDay).Min();
-            DateTime maxDátum = (from x in Ticklist select x.TradingDay).Max();
-            int elteltNapokSzáma = (maxDátum - minDátum).Days;
-            DateTime optMinDátum = (from x in Ticklist where x.Index == "OTP" select x.TradingDay).Min();
-            MessageBox.Show(optMinDátum.ToString());
-
-
-
+            
+            
         }
 
         private void CreatePortfolio()
@@ -47,6 +33,21 @@ namespace VARProject
             Portfolio.Add(new PortfolioItem() { Index = "ELMU", Volume = 10 });
 
             dataGridView2.DataSource = Portfolio;
+        }
+
+        private decimal GetPortfolioValue(DateTime date)
+        {
+            decimal value = 0;
+            foreach (var item in Portfolio)
+            {
+                var last = (from x in Ticklist
+                            where item.Index == x.Index.Trim()
+                               && date <= x.TradingDay
+                            select x)
+                            .First();
+                value += (decimal)last.Price * item.Volume;
+            }
+            return value;
         }
     }
 }
