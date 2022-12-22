@@ -1,0 +1,15 @@
+C:\Users\mbozai\source\repos\VersionControl\VARProject\VARProject\bin\Debug\VARProject.exe.config
+C:\Users\mbozai\source\repos\VersionControl\VARProject\VARProject\bin\Debug\VARProject.exe
+C:\Users\mbozai\source\repos\VersionControl\VARProject\VARProject\bin\Debug\VARProject.pdb
+C:\Users\mbozai\source\repos\VersionControl\VARProject\VARProject\bin\Debug\EntityFramework.dll
+C:\Users\mbozai\source\repos\VersionControl\VARProject\VARProject\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\mbozai\source\repos\VersionControl\VARProject\VARProject\bin\Debug\EntityFramework.xml
+C:\Users\mbozai\source\repos\VersionControl\VARProject\VARProject\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\mbozai\source\repos\VersionControl\VARProject\VARProject\obj\Debug\VARProject.csproj.AssemblyReference.cache
+C:\Users\mbozai\source\repos\VersionControl\VARProject\VARProject\obj\Debug\VARProject.Form1.resources
+C:\Users\mbozai\source\repos\VersionControl\VARProject\VARProject\obj\Debug\VARProject.Properties.Resources.resources
+C:\Users\mbozai\source\repos\VersionControl\VARProject\VARProject\obj\Debug\VARProject.csproj.GenerateResource.cache
+C:\Users\mbozai\source\repos\VersionControl\VARProject\VARProject\obj\Debug\VARProject.csproj.CoreCompileInputs.cache
+C:\Users\mbozai\source\repos\VersionControl\VARProject\VARProject\obj\Debug\VARProject.csproj.CopyComplete
+C:\Users\mbozai\source\repos\VersionControl\VARProject\VARProject\obj\Debug\VARProject.exe
+C:\Users\mbozai\source\repos\VersionControl\VARProject\VARProject\obj\Debug\VARProject.pdb
