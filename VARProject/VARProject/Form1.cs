@@ -12,9 +12,13 @@ namespace VARProject
 {
     public partial class Form1 : Form
     {
+        PortfolioEntities context = new PortfolioEntities();
+        List<Tick> Ticklist;
         public Form1()
         {
             InitializeComponent();
+            Ticklist = context.Tick.ToList();
+            dataGridView1.DataSource = Ticklist;
         }
     }
 }
